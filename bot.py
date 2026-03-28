@@ -25,4 +25,9 @@ app = ApplicationBuilder().token(TOKEN).build()
 app.add_handler(CommandHandler("start", start))
 app.add_handler(MessageHandler(filters.TEXT, handle_bet))
 
-app.run_polling()
+import asyncio
+
+async def main():
+    await app.run_polling()
+
+asyncio.run(main())
