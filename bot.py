@@ -1,7 +1,7 @@
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
-TOKEN = "8713691588:AAFdiP6PLGzedKlQyzF6jYTLITUq-Jt16p8" 
+TOKEN = "8713691588:AAFdiP6PLGzedKlQyzF6jYTLITUq-Jt16p8"
 
 users = {}
 bets = {"red": 0, "green": 0, "blue": 0}
@@ -25,9 +25,5 @@ app = ApplicationBuilder().token(TOKEN).build()
 app.add_handler(CommandHandler("start", start))
 app.add_handler(MessageHandler(filters.TEXT, handle_bet))
 
-import asyncio
-
-async def main():
-    await app.run_polling()
-
-asyncio.run(main())
+if name == "main":
+    app.run_polling()
