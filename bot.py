@@ -1,7 +1,7 @@
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
-TOKEN = 8713691588:AAFdiP6PLGzedKlQyzF6jYTLITUq-Jt16p8 
+TOKEN = "8713691588:AAFdiP6PLGzedKlQyzF6jYTLITUq-Jt16p8" 
 
 users = {}
 bets = {"red": 0, "green": 0, "blue": 0}
