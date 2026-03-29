@@ -50,8 +50,8 @@ async def game_loop(application):
     global users, bets, betting_open
 
     while True:
-        users = {}
-        bets = {"red": 0, "green": 0, "blue": 0}
+        users.clear()
+        bets["red"] = bets["green"] = bets["blue"] = 0
 
         betting_open = True
         print("🟢 Betting Open (30s)")
@@ -77,17 +77,20 @@ async def game_loop(application):
 
         await asyncio.sleep(5)
 
-async def main():
+def main():
     app = ApplicationBuilder().token(TOKEN).build()
 
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("bet", bet))
 
-    # game loop start
-    asyncio.create_task(game_loop(app))
+    # 🔥 correct background start (NO asyncio.run)
+    async def start_game(app):
+        asyncio.create_task(game_loop(app))
+
+    app.post_init = start_game
 
     print("Bot started 🚀")
-    await app.run_polling()
+    app.run_polling()
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
